@@ -13,6 +13,11 @@ import { MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormsModule} from '@angular/forms'
+
 import {AppRoutingModule} from '../app/app-routing/app-routing.module';
 
 
@@ -46,8 +51,12 @@ import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material
     MatGridListModule,
     MatCardModule,
     AppRoutingModule,
-  MatDialogModule
-    
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule,
+  
   ],
   providers: [DishService,PromotionService ],
   entryComponents: [LoginComponent],
