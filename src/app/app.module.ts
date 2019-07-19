@@ -19,6 +19,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormsModule} from '@angular/forms'
 import {MatSelectModule} from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {ReactiveFormsModule} from '@angular/forms'
 
 import {AppRoutingModule} from '../app/app-routing/app-routing.module';
@@ -62,6 +63,7 @@ import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   providers: [DishService,PromotionService ],
   entryComponents: [LoginComponent],
