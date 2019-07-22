@@ -8,6 +8,7 @@ import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule } from '@angular/material/toolbar';
 import {MatListModule } from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http'
 import { MatGridListModule} from '@angular/material/grid-list';
 import { MatCardModule} from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
@@ -25,7 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 
 import {AppRoutingModule} from '../app/app-routing/app-routing.module';
 
-
+import { baseURL} from './shared/baseURL'
 import {DishService} from '../app/services/dish.service';
 import {PromotionService} from './services/promotion.service'
 import 'hammerjs';
@@ -50,6 +51,7 @@ import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material
     BrowserModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     MatToolbarModule,
     MatListModule,
     MatButtonModule,
@@ -67,7 +69,8 @@ import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material
     MatProgressSpinnerModule,
     MatSliderModule
   ],
-  providers: [DishService,PromotionService ],
+  providers: [DishService,PromotionService,
+  {provide: 'BaseURL' , useValue: baseURL} ],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]
 })
