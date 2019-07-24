@@ -22,6 +22,8 @@ comment={
   'date' : '',
   'comment': '',
 };
+ 
+  dishcopy : Dish;
   dish : Dish;
   dishIds: string[];
   prev: string;
@@ -53,7 +55,7 @@ private processHTTPMsgService: ProcessHTTPMsgService,
   ngOnInit() {
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds= dishIds,errMess => this.errMess= <any> errMess )
     this.route.params.pipe(switchMap((params: Params)=> this.dishService.getDish(params['id']))).subscribe(
-      dish => {this.dish=dish ;this.setPrevNext(dish.id) }
+      dish => {this.dishcopy=dish ;this.dish=dish;this.setPrevNext(dish.id) }, errMess => this.errMess=<any>errMess
     )
   
   }
@@ -96,7 +98,13 @@ for (const field in this.formErrors) {
   onSubmit(){
 this.comment=this.commentForm.value;
 this.comment.date=new Date().toISOString();
-this.dish.comments.push(this.comment);
+this.dishcopy.comments.push(this.comment);
+this.dishService.putDish(this.dishcopy).subscribe(
+ dish=>{
+   this.dish =dish;
+   this.dishcopy = dish
+ } , errMess=> {this.dish = null ; this.dishcopy = null ;this.errMess =<any> errMess}
+)
 this.commentForm.reset({
   author:'',
   rating:5,
