@@ -9,14 +9,14 @@ import {baseURL } from '../shared/baseURL';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent implements OnInit {
-   
+errMess: string;  
 dishes: Dish[]
 selectedDish: Dish;
   constructor( private dishService: DishService,
     @Inject('BaseURL') private BaseURL) { }
 
   ngOnInit() {
-    this.dishService.getDishes().subscribe(dishes => this.dishes= dishes);
+    this.dishService.getDishes().subscribe(dishes => this.dishes= dishes,errMess => this.errMess=<any> errMess);
   }
   OnSelect(dish :Dish){
 this.selectedDish= dish ;

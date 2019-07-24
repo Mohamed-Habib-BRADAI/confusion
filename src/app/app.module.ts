@@ -28,7 +28,8 @@ import {AppRoutingModule} from '../app/app-routing/app-routing.module';
 
 import { baseURL} from './shared/baseURL'
 import {DishService} from '../app/services/dish.service';
-import {PromotionService} from './services/promotion.service'
+import {PromotionService} from './services/promotion.service';
+import {ProcessHTTPMsgService} from './services/process-httpmsg.service'
 import 'hammerjs';
 import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
@@ -69,7 +70,7 @@ import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material
     MatProgressSpinnerModule,
     MatSliderModule
   ],
-  providers: [DishService,PromotionService,
+  providers: [DishService,PromotionService,ProcessHTTPMsgService,
   {provide: 'BaseURL' , useValue: baseURL} ],
   entryComponents: [LoginComponent],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { Location}from '@angular/common'
 import { switchMap } from 'rxjs/operators';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { baseURL } from '../shared/baseURL'
+ import { ProcessHTTPMsgService } from '../services/process-httpmsg.service'
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
@@ -14,6 +15,7 @@ import { baseURL } from '../shared/baseURL'
 
 export class DishdetailComponent implements OnInit {
   @ViewChild('fform') commentFormDirective;
+  errMess: string ;
 comment={
   'author': '',
   'rating': 5,
@@ -43,12 +45,13 @@ validationMessages = {
   private location: Location,
 private route: ActivatedRoute,
 private fb: FormBuilder,
+private processHTTPMsgService: ProcessHTTPMsgService,
 @Inject('BaseURL') private BaseURL) {
   this.createForm();
  }
   
   ngOnInit() {
-    this.dishService.getDishIds().subscribe(dishIds => this.dishIds= dishIds)
+    this.dishService.getDishIds().subscribe(dishIds => this.dishIds= dishIds,errMess => this.errMess= <any> errMess )
     this.route.params.pipe(switchMap((params: Params)=> this.dishService.getDish(params['id']))).subscribe(
       dish => {this.dish=dish ;this.setPrevNext(dish.id) }
     )
