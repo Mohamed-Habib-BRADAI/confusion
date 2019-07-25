@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, inject } from '@angular/core';
 import {Dish} from '../shared/dish'
 import {DISHES} from '../shared/dishes'
 import {DishService } from '../services/dish.service';
-import {baseURL } from '../shared/baseURL';
+import {baseURL } from '../shared/baseurl';
 import {flyInOut, expand} from '../animations/app.animation'
 @Component({
   selector: 'app-menu',

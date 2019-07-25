@@ -26,7 +26,7 @@ import {ReactiveFormsModule} from '@angular/forms'
 
 import {AppRoutingModule} from '../app/app-routing/app-routing.module';
 
-import { baseURL} from './shared/baseURL'
+import { baseURL} from './shared/baseurl'
 import {DishService} from '../app/services/dish.service';
 import {PromotionService} from './services/promotion.service';
 import {ProcessHTTPMsgService} from './services/process-httpmsg.service'

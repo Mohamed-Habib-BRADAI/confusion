@@ -36,14 +36,31 @@
     </div>
   </div>
   <div fsFlex fxFlexOffset="20px" class="form-size">
-    <h3> Send us your Feedback</h3>
-    <p> {{ feedbackForm.value|json }} {{ feedbackForm.status | json }}</p>
+      <h3> Send us your Feedback</h3>
+    <div *ngIf="!visibility && !feedbackReturn">
+    <h3> Submitting Form</h3>
+<mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
+ </div>
+<div *ngIf= "feedbackReturn && !visibility ">
+    <h3> Your Submission</h3>
+  
+    
+First Name : {{feedbackReturn.firstname}}<hr style="border: none;">
+Last Name : {{feedbackReturn.lastname}}<hr style="border: none;">
+Tel. Number : {{feedbackReturn.telnum}}<hr style="border: none;">
+Email : {{feedbackReturn.email}}<hr style="border: none;">
+Contact You ? : {{feedbackReturn.agree}}<hr style="border: none;">
+How : {{feedbackReturn.contacttype}}<hr style="border: none;">
+Feedback : {{feedbackReturn.message}}
+</div>
+
+    <div [hidden] = "!visibility">
     <form novalidate [formGroup]="feedbackForm" #fform="ngForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
           <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-          <mat-error *ngIf="formErrors.lastname">
-              {{formErrors.lastname}}
+          <mat-error *ngIf="formErrors.firstname">
+              {{formErrors.firstname}}
           </mat-error>
         </mat-form-field>
         <mat-form-field class="half-width">
@@ -86,5 +103,6 @@ May we contact You ?
 </p>
 <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
     </form>
+  </div>
   </div>
 </div>
