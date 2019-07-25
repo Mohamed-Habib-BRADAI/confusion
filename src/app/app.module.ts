@@ -36,6 +36,7 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material';
+import { HighlightDirective } from './directives/highlight.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +48,7 @@ import { MatDialog, MatDialogModule } from '../../node_modules/@angular/material
     AboutComponent,
     HomeComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,

@@ -6,11 +6,21 @@ import { Location}from '@angular/common'
 import { switchMap } from 'rxjs/operators';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
 import { baseURL } from '../shared/baseURL'
- import { ProcessHTTPMsgService } from '../services/process-httpmsg.service'
+import { ProcessHTTPMsgService } from '../services/process-httpmsg.service';
+import {visibility, flyInOut,expand} from '../animations/app.animation'
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  host:{
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations:[
+    visibility()
+, flyInOut(),expand()
+  ]
+    
 })
 
 export class DishdetailComponent implements OnInit {
@@ -29,6 +39,7 @@ comment={
   prev: string;
   next: string;
   commentForm: FormGroup;
+  visibility = 'shown';
   formErrors = {
     'author': '',
     'comment': '',
@@ -54,8 +65,8 @@ private processHTTPMsgService: ProcessHTTPMsgService,
   
   ngOnInit() {
     this.dishService.getDishIds().subscribe(dishIds => this.dishIds= dishIds,errMess => this.errMess= <any> errMess )
-    this.route.params.pipe(switchMap((params: Params)=> this.dishService.getDish(params['id']))).subscribe(
-      dish => {this.dishcopy=dish ;this.dish=dish;this.setPrevNext(dish.id) }, errMess => this.errMess=<any>errMess
+    this.route.params.pipe(switchMap((params: Params)=> {this.visibility='hidden';return this.dishService.getDish(params['id']);})).subscribe(
+      dish => {this.dishcopy=dish ;this.dish=dish;this.setPrevNext(dish.id);this.visibility = 'shown'; }, errMess => this.errMess=<any>errMess
     )
   
   }
